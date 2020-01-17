@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDarkMode } from './hooks/useDarkMode.js';
+import { useDarkMode } from '../hooks/useDarkMode';
 import styled from 'styled-components';
 
 const DarkModeToggleButton = () => {

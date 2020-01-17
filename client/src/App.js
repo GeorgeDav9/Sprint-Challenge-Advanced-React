@@ -1,50 +1,35 @@
-import React from "react";
-import Header from "./components/Header";
-import PlayerList from "./components/playerList";
-import SearchForm from "./components/SearchForm";
-import "./App.css";
-import axios from "axios";
+import React from 'react';
+import axios from 'axios';
+import './App.css';
+import PlayersList from './components/PlayersList';
+import DarkModeToggleButton from './components/DarkModeToggleButton';
 
 class App extends React.Component {
-  constructor() {
+  constructor(){
     super();
     this.state = {
-      data: [],
-      name: "",
-      country: ""
-    };
+      players: [],
+    }
+  }  
+
+  componentDidMount(){
+    axios.get(`http://localhost:5000/api/players`)
+    .then(resp => {
+      this.setState({ players: resp.data })
+    })
+    .catch(err => console.log('Error inside axios call: ', err));
   }
 
-  componentDidMount() {
-    console.log("Component did mount!");
-
-    axios.get("http://localhost:5000/api/players")
-      .then(response => {
-        console.log(response.data);
-        this.setState({
-          data: response.data,
-          name: response.data.name,
-          country: response.data.country
-        });
-      })
-      .catch(error => console.log("No soccer players for you"));
-  }
   render() {
     return (
       <div className="App">
-        <Header />
-        <SearchForm
-          data={this.state.data}
-          name={this.state.name}
-          country={this.state.country}
-        />
-        <PlayerList
-          data={this.state.data}
-          name={this.state.name}
-          country={this.state.country}
+        <DarkModeToggleButton />
+        <PlayersList
+           players={this.state.players}
         />
       </div>
     );
-  }
+  };
 }
+
 export default App;
