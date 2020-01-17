@@ -4,7 +4,7 @@ const PlayersCard = props => {
     return(
         <div className="card">
             <h2>{props.name}</h2>
-            <p>{`is from ${props.country} and as been searched ${props.searches} times.`}</p>
+            <p>{`is from ${props.country} and has been searched ${props.searches} times.`}</p>
         </div>
     );
 }
