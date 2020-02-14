@@ -16,3 +16,20 @@ it('renders without crashing', () => {
     const {findByText} = await render(<PlayersCard />)
     findByText(/alex morgan/i);
 }) 
+test("renders the placeholder country without crashing", () => {
+  const country = render(<App />);
+
+  country.findByPlaceholderText("country");
+});
+
+test("renders the placeholder name without crashing", () => {
+  const name = render(<App />);
+
+  name.findByPlaceholderText("name");
+});
+
+test("renders the placeholder txt country without crashing", () => {
+  const country = render(<App />);
+
+  country.findByPlaceholderText("country");
+});
